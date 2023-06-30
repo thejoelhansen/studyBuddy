@@ -1,0 +1,58 @@
+1q For ex200 RHCSA 9 which of the following distributions should you avoid?
+1a RHEL 9 with dev license, Alma, or Rocky. 
+1e RHEL 9 is offered with 16 free development (non prod) licenses. Alma and Rocky are "downstream" of RHEL.
+2q For RHCSA which of the following distributions should you avoid?
+2a CentOS Stream, Fedora
+2e CentOS Stream is an upstream development snapshot of RHEL, while Fedora is a further upstream, experimental, community distrobution.
+3q Which of the following features is available in both RHEL and CentOS Stream?
+3a Software updates
+3e !idk
+4q Which of hte following features are exclusive to RHEL (not included in CentOS Stream)? 
+4a Hardware certification, Software certification, The right ot make support calls
+4e !idk
+5q Why should you install the server with a GUI installation pattern?
+5a To prepare for RHCSA, you need some tools that run in a GUI only, such as (!idk). 
+5e For sake of studying you'll appreciate having a GUI when working with Virtual Machines, configuring LDAP & Kerberos, and it make sthings easier with multiple terminal windows
+6q Which is the default file system that is used in RHEL 9?
+6a XFS is the default file system of RHEL 9
+6e !When did it change to XFS? Was it eve Ext4? What's the most popular file system for RHEL?
+7q Which feature is supported in Ext4 but not in XFS?
+a. The ability to shrink the file system
+b. Snapshots
+c. File system quota
+d. A maximum size that goes beyond 2 TB
+From the Library of Joel Hansen
+5
+Chapter 1: Installing Red Hat Enterprise Linux
+6. Which of the following is not a reason why Fedora should be avoided?
+a. Fedora contains features that may or may not be available in future
+RHEL releases.
+b. Fedora distributions show a much later state of development than RHEL.
+c. Fedora software is not stable.
+d. Software in Fedora may differ from the same software in RHEL.
+7. Which of the following options is not available from the Installation Summary
+screen?
+a. Time & Date
+b. Keyboard
+c. Language Support
+d. Troubleshoot an Existing Installation
+8. After setting the root password that you want to use, you cannot proceed in
+the installation. What is the most likely reason?
+a. The password is unsecure, and unsecure passwords are not accepted.
+b. The password does not meet requirements in the password policy.
+c. You also need to create a user.
+d. If an unsecure password is used, you need to click Done twice.
+9. Which statement about the system language is not true?
+a. You can change the system language from the Installation Summary
+screen.
+b. You can change the system language directly after booting from the
+installation media.
+c. When setting the installation language, you can also select a keyboard
+layout.
+d. After installation, you cannot change the language settings.
+10. When installing a server that uses LVM logical volumes, you’ll get at least three
+storage volumes (partitions or LVM). Which of the following is not part of them?
+a. /boot
+b. /var
+c. /
+d. swap

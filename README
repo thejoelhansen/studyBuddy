@@ -1,0 +1,4 @@
+1. Rename quiz.conf.example -> quiz.conf
+2. Update variables in quiz.conf with...
+3. Update crontab -e with 
+0,15,30,60 * * * * /install/path/quiz.sh
