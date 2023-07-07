@@ -64,3 +64,7 @@
 23e /bin and /sbin are aliases to /usr/bin and /usr/sbin in RHEL since version ____ ! 
 24q Where are files taht can change size dynamically stored (log files, mail boxes, spool files, etc)? 
 24a /var
+25q 
+
+
+
