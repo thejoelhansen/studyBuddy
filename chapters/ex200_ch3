@@ -50,8 +50,9 @@
 17a idk
 18q Where is root's home directory located? 
 18a /root
-19q Where are process and user-specific information created since last boot located? 
-19a /run
+19q Where are temporary files stored?
+19a /tmp for user process files (small), /run for system files, and /var/tmp for larger temporary files
+19e /tmp and /run are flushed at boot 
 20q what is /srv for? 
 20a Generic web/network based data sharing services like FTP or HTTP. Weird that Apache isn't installed here? 
 21q What folder structure is used as an interface to various hardware devices managed by the Linux kernal? 
@@ -62,9 +63,17 @@
 23q Where are program files, their libraries, and documentation stored? 
 23a /usr, specifically /usr/bin, /usr/sbin, /usr/local/bin, and /usr/local/sbin
 23e /bin and /sbin are aliases to /usr/bin and /usr/sbin in RHEL since version ____ ! 
-24q Where are files taht can change size dynamically stored (log files, mail boxes, spool files, etc)? 
+24q Where are files that can change size dynamically stored (log files, mail boxes, spool files, etc)? 
 24a /var
-25q 
-
+25q What file system structure gives API-like access to kernel information? 
+25q /proc
+25e Normal files are NOT to be stored here
+26q What common folders might be mounted on separate devices? 
+26a /boot & /boot/EFI store essential information the system needs to boot. Also /var for file size control and /home (noexec) & /usr (read-only) for security
+27q What command shows available disk space on all mounted devices? 
+27a df -Th
+28q What commands list mounted devices? 
+28a mount & findmnt, the former of which is a bit verbose 
+29q 
 
 
