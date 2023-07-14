@@ -4,3 +4,8 @@
 2q
 2a
 2e
+
+21q What four configuration files are read when a user logs in?
+21a /etc/profile (all user login), /etc/bashrc (all subshells), ~/.bash_profile (user-specific login), ~/.bashrc (user-specific subshells)
+21e
+22q  

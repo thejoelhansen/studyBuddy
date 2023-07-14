@@ -71,9 +71,14 @@
 26q What common folders might be mounted on separate devices? 
 26a /boot & /boot/EFI store essential information the system needs to boot. Also /var for file size control and /home (noexec) & /usr (read-only) for security
 27q What command shows available disk space on all mounted devices? 
-27a df -Th
+27a df -Th #Disk Free
 28q What commands list mounted devices? 
 28a mount & findmnt, the former of which is a bit verbose 
-29q  
-
-
+29q What are the tempfs devices listed by df? 
+29a Kernel devices under /dev and /run used to create temporary file systems in RAM.
+30q List three wildcards
+30a * refers to an unlimited number of characters, ? refers to one specific character, and [characters] refers to a range
+30e c*t = cat & can't & all others, c?t = cat & cut, etc, c[ao]t = only cat & cot
+31q What command will provide a long list of all files, sorted by date modified, with the most recently modified files last? 
+31a ls -lrt (high value command!)
+32q !! Table 3-4 !! What command will who the content of the current directory as well as all its subdirectories? That is, a recursive list of all directories  
