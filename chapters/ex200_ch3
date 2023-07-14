@@ -74,6 +74,6 @@
 27a df -Th
 28q What commands list mounted devices? 
 28a mount & findmnt, the former of which is a bit verbose 
-29q 
+29q  
 
 
