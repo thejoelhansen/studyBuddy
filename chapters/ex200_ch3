@@ -81,4 +81,36 @@
 30e c*t = cat & can't & all others, c?t = cat & cut, etc, c[ao]t = only cat & cot
 31q What command will provide a long list of all files, sorted by date modified, with the most recently modified files last? 
 31a ls -lrt (high value command!)
-32q !! Table 3-4 !! What command will who the content of the current directory as well as all its subdirectories? That is, a recursive list of all directories  
+32q What command will show the content of the current directory as well as all its subdirectories? That is, a recursive list of all directories
+32a ls -R
+33q What command will show the names of directories (not the contents) that match the wildcards supplied with the ls command? 
+33a ls -d (d standing for List Directory only, useful when scripting in bash)
+34q What command shows all files, including hidden files? 
+34a ls -a
+35q What command will copy hidden files from ~/somedir to ~/somedir2?
+35a cp ~/somedir/.* ~/somedir2
+35e Since the -R option was not supplied this won't copy hidden folders, just files. cp -R ~/somedir/.* ~/somedir2
+36q What command will delete the folder ~/somedir? What about all files and folders (and folder contents) from ~/somedir but not the folder itself? 
+36a rm -r ~/somedir; rm -rf ~/somedir/* (force is needed... sometimes... but not in the first example)
+37q What command will remove a file and prompt you for confirmation? 
+37a rm -i
+37e /root/.bashrc defines rm as an alias to rm -i, so when rm is run under root you'll be prompted for deletions. 
+38q Every file's first hard link is its own ____. Hard links tie a file to it's ___. What's stored in an inode? 
+38a Name; inode; The data blocks on disk, creation, access, and modification dates, permissions, and owner.
+39q What 4 stipulations are unique to hard links? 
+39a You must be the owner of the file, hard links must exist on the same device (partition, lv, etc), you cannot create hard links to directories, and when the last hard link to a file is removed, access to the file's data is lost. 
+40q Symbolic links (aka soft links) link to ____. They also work with ____ and you don't need to be the ____.
+40a hard links; directories; owner
+41q How would you create a symbolic (soft) link to a folder at /home/$user/folder1/folder2/ in your home directory named ~/link?  
+41a ln -s /home/$user/folder1/folder2 /home/$user/link (same order as cp and mv, thing first, location to put it second)
+42q How would you create a hard link to a file at /home/$user/folder1/file1 in your home directory named ~/file? 
+42a ln /home/$user/folder1/file1 ~/file
+43q How do you use a command and force it to not use the alias configured in .bashrc? 
+43a Start with "command" or \ and then your actual command. ls is an alias for ls --color=auto. Use ls without coloring by running $ \ls -l
+44q How do you remove a link, hard or soft? 
+44a rm link; Do NOT use rm -rf link, that'll delete the CONTENTS of the linked folder! 
+45q star utility? 
+45a What is it? How to use? idk maaan but tar offers its functionality? (pg 74)
+46q Tar: extract one file out of a .tar? 
+47q Tar: extract an archived file to a specific location? 
+48q Tar: Table 3-6, then eercise 3-5
