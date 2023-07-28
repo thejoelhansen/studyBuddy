@@ -1,0 +1,24 @@
+1q Which command was developed to show only the first ten lines in a text file? 
+1a The head command, by default, shows the first ten lines in a text file. 
+2q Which command enables you to count the number of words in a text file? 
+2a The wc command shows the number of lines, words, and characters in a file. 
+3q Which key on your keyboard do you use in less to go to hte last line of hte current file? 
+3a G, when using less, will bring you to the end of the current file.
+4q Which option is missing from the following command? (Assume you want to filter the first field out of /etc/passwd and use a as field delimiter): cut ___ : -f 1 /et/passwd
+4a The -d option is used to specify the field delimiter
+5q Which option is missing if you want to sort the third column out of the output of the command: ps aux | sort ___
+5a -k3
+6q Which of the following commands would only show lines in the file /etc/passwd that start with text "anna"? 
+6a grep ^anna /etc/passwd 
+7q Which regular expression do you use to make the previous character optional? 
+7a The ? regular expression is used to refer to zero or one of the previous characters. This makes the previous character "optional". 
+7e Regex colou?r would match color and colour
+8q Which regular expression do you use if you want the preceding character to occur at least one time? 
+8a The + regular expression is used to indicate the preceding character should occur one or more times. ** This is an EXTENDED regular expression and most tools need additional options to support it. 
+9q Assuming that the field delimiter : is used, which command prints the fourth field of a line in /etc/passwd if the text "user" occurs in that line? 
+9a awk -F : '/user/ { print $4 }' /etc/passwd 
+10q Which option would you use with grep to show only lines that do NOT contain the regular excpression that was used? 
+10a grep -v 
+11q Identify the following commands: less ,cat, head, tail, cut, sort, wc
+11a Opens file in a pager, dumps content of text on the screen, shows the top (default 10) lines of a file, shows the bottom (default 10) lines of a file, filters specific columns or characters from a text file, sorts the contents of a text file, counts the number of lines-words-characters of a text file
+12q page 85   

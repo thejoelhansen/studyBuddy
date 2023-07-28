@@ -113,4 +113,67 @@
 45a What is it? How to use? idk maaan but tar offers its functionality? (pg 74)
 46q Tar: extract one file out of a .tar? 
 47q Tar: extract an archived file to a specific location? 
-48q Tar: Table 3-6, then eercise 3-5
+48q What command will create a compressed archive of /home/user at location /home/user/file.tgz using gzip with verbose output? 
+48a tar -zcvf /home/user/file.tgz /home/user
+49q What command will extract a compressed archive of /home/user/file.tgz using bzip at location /home/user/newfolder?  
+49a tar -jxf /home/user/file.tgz /home/user/newfolder
+50q Tar options u, C, r, J, t 
+51q What is the FHS? 
+51a The File System Hierarchy Standard defines the layout of the Red Hat Linux file system.
+51e Defined in man 7 file-hierarchy
+52q What is a mount? 
+52a A mount is a connection between a device and a directory. Often stored under /dev, a mount allows the OS to interact with devices through said directories. 
+53q What is the root directory? 
+53a 
+54q What is a device? 
+54a 
+55q What is a directory? 
+55a 
+56q What is a folder? 
+56a
+57q What is an absolute filename? 
+57a 
+58q What is a path? 
+58a
+59q What is a relative filename? 
+59a
+60q What is an inode? 
+60a
+61q What is a hard link? 
+61a
+62q What is a symbolic link? 
+62a
+63q What is tar? 
+63a A command that archives files and folders into a single file. 
+64q What is star? 
+64a no idea man
+65q What is compression? 
+65a
+66q What is gzip? 
+66a
+67q What is bzip2? 
+67a
+68q Waht is xz? 
+68a
+69q What directory would you go to if you were looking for configuration files?
+69a /etc
+70q Which command enables you to display a list of current directory contents, with the newest files listed first? 
+70a ls -alt (a shows hidden files, l shows a long listing, t organizes the results with the oldest files last)
+71q Which command enables you to rename the file myfile to yourfile? 
+71a mv myfile yourfile
+72q Which command enables you to wipe an entire directory structure, including all of its contents? 
+72a rm -rf ; potentially rm -a? 
+73q How do you create a link to the directory /tmp in your home directory? 
+73a ln -s /tmp ~ (assuming symbolic here)
+74q How would you copy all the files that have the name that starts with a, b, or c from the directory /etc to your current directory? 
+74a cp /etc/[abc]* .
+75q Which command enables you to create a link to the directory /etc in your home directory? 
+75a ln -s /etc ~ (again, assuming symbolic)
+76q What is the safe option to remove a symbolic link to a directory? 
+76a rm symlink ; don't use rm -rf! It'll delete the *contents* the soft or hard links link to!
+77q How do you create a compressed archive of the directories /etc and /home and write that arhive to /tmp/etchome.tgz?  
+77a tar zcvf /tmp/etchome.tgz /etc /home
+78q How would you extract teh file /etc/passwd from /tmp/etchome.tgz that you have created in the previous step? 
+78a tar -xvf /tmp/etchome.tgz /etc/passwd
+
+ 
