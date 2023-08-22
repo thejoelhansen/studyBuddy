@@ -21,4 +21,7 @@
 10a grep -v 
 11q Identify the following commands: less ,cat, head, tail, cut, sort, wc
 11a Opens file in a pager, dumps content of text on the screen, shows the top (default 10) lines of a file, shows the bottom (default 10) lines of a file, filters specific columns or characters from a text file, sorts the contents of a text file, counts the number of lines-words-characters of a text file
-12q page 85   
+12q How many lines do the head and tail utilities show by default? What command pulls sixth line from /etc/passwd? 
+12a Both show 10 by default. Define number of lines with -n option. head -n 6 /etc/passwd | tail -n 1 
+12e Refresh display as file is updated with -f option. 
+13q p87 cut & sort  
