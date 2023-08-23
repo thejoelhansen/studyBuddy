@@ -1,0 +1,10 @@
+1q What command will request the exit status of the last command? 
+1a echo $?
+2q What two ways can you execute hello.sh? 
+2a Either ./hello.sh or bash hello.sh
+2e If a scripted is started as an argument to bash, execute privileges are not needed. If ran directly (./hello.sh) +x is required.
+3q What is the bash to count supplied arguments to a script? What then refers to *all* arguments? 
+3a $# is a bash variable equal to the number of supplied arguments. $@ is a bash variable referring to *all* arguments.
+4q What is a variable? 
+4a A 'label' referring to a specific location in memory that contains a specific value.
+5q  
