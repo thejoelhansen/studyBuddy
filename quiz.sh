@@ -5,14 +5,23 @@
 
 # Get number of questions in a supplied chapter, allow specify # of loops and specific chapter - default all chapters? 
 
-ch1='/home/joel/projects/studyBuddy/chapters/ex200_ch1'
-rngStart=$(head $ch1 -c 1)
-rngStop=$(tail $ch1 -n 1)
+ch='/home/joel/projects/studyBuddy/chapters/ex200_ch3'
 
-echo $rngStart
-echo $rngStop
+# !improve currently limited to 2 characters - make so that numbers are up until first letter (EG 121q -> 121)
+
+lastQ=$(tail $ch -n 1)
+
+rngStop=${lastQ:0:2}
+
+# Get random number
+rng=$[ $RANDOM % $rngStop + 1 ] 
+
+q=$(grep $rng $ch) 
+
+echo $q
 
 exit 0 
+
 # Randomly select a number
 
 # Print Question to STDOUT

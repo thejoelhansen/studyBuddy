@@ -1,5 +1,4 @@
-1q Where can temporary files dynamically created since last boot can be found? 
-1a Either /boot (a) or /run (d), not /bin or /sbin (b and c), which are for binaries (applications), which are aliases in RHEL to /usr/bin and /usr/sbin
+1q Where can temporary files dynamically created since last boot can be found?1a Either /boot (a) or /run (d), not /bin or /sbin (b and c), which are for binaries (applications), which are aliases in RHEL to /usr/bin and /usr/sbin
 1e 
 2q Where would you expect to find log files? 
 2a /var (c)
