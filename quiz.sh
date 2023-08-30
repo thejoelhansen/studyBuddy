@@ -14,11 +14,20 @@ lastQ=$(tail $ch -n 1)
 rngStop=${lastQ:0:2}
 
 # Get random number
-rng=$[ $RANDOM % $rngStop + 1 ] 
+# rng=$[ $RANDOM % $rngStop + 1 ] 
 
-q=$(grep $rng $ch) 
+# q=$(grep $rng $ch) 
 
-echo $q
+#echo $q
+
+p=$1
+
+if [ -z $p ]; then
+	echo "\$p is empty"
+else
+	echo "\$p appears to be $p"
+fi
+
 
 exit 0 
 
