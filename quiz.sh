@@ -20,14 +20,15 @@ rngStop=${lastQ:0:2}
 
 #echo $q
 
-p=$1
-
-if [ -z $p ]; then
-	echo "\$p is empty"
+if [ -f $1 ]
+then
+	echo "$1 is a file"
+elif [ -d $1 ]
+then
+	echo "$1 is a directory"
 else
-	echo "\$p appears to be $p"
+	"I don't know what \$1 is"
 fi
-
 
 exit 0 
 
