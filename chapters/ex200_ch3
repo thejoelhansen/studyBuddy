@@ -173,6 +173,4 @@
 77q How do you create a compressed archive of the directories /etc and /home and write that arhive to /tmp/etchome.tgz?  
 77a tar zcvf /tmp/etchome.tgz /etc /home
 78q How would you extract teh file /etc/passwd from /tmp/etchome.tgz that you have created in the previous step? 
-78a tar -xvf /tmp/etchome.tgz /etc/passwd
-
- 
+78a tar -xvf /tmp/etchome.tgz /etc/passwd 
