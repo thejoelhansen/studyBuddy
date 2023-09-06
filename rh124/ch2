@@ -1,0 +1,20 @@
+1q How do you redirect STDIN? STDOUT? STDERR? Append?  
+1a STDIN is < or 0<; STDOUT is > or 1>; STDERR is just 2>; 
+2q How can you redirect STDERR to teh same place as STDOUT? And how do you append your output to a growing log file? 
+2a 2>&1 after you first define the STDOUR with >; EG $ ls folder > errout 2>&1; >> will append instead of replace 
+3q A user tries to run a script using the command myscript, but it won't run. Verified that the script permissions are set as executable. Which of the following is the most likely explanation? 
+3a The directory where the script resides is not in the $PATH variable. Either add it to $PATH or run with ./myscript
+4q What command will use the output of ls as the input of less? 
+4a ls | less
+5q A user typed a password, which is now item 299 in their history. What do? 
+5a $ history -d 299 will delete the offending line; $ history -c will clear in-memory contents (which are written at close of session)
+6q What are methods to repeat a command from history? 
+6a $ Ctrl+R anyPartOfCommand; $ ! FirstLettersOfCommand; $ ! NumberOfCommandListedInHistory; 
+7q Bash completion can be used with...
+7a Commands, Files and Variables
+8q What command lets you replace every occurrence of old with new while using vim? 
+8a :%s/old/new/g 
+9q How to show a message to all users who are already logged in? To users who haven't yet logged in? 
+9a /etc/motd will display to all users after logged in; /etc/issue will display to users at login
+10q What is the likely fix of the message "nothing appropriate" when searching man keywords? 
+10a if man -k keyword yields "nothing appropriate" try updating mandb with $ sudo mandb

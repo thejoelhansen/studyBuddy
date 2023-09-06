@@ -1,6 +1,3 @@
 # Install Directory
 installPath=/app/quiz
 
-# Desired external DNS for server
-DNS=dump.poot.me
-
