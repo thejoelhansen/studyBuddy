@@ -23,6 +23,8 @@ elif [ ! -d $subject ]; then
 fi
 
 # Get for chapter based on file
+chapter=$2
+
 if [ -z $2 ]; then
 	echo "What chapter? Press Return to randomize from ch1-ch99"
 	read chapter
