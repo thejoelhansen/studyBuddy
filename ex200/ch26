@@ -1,0 +1,100 @@
+1q What are the necessary Linux features for containers? 
+1a Namespaces for isolation, control groups (cgroups) for resource allocation, and SELinux for security (b)
+2q What is the name of the Red Hat solution for containers? 
+2a OpenShift provides a container orchestration platform based on Kubernetes (b)
+3q How do you detach from a running container without shutting it down? 
+3a From a running container (started with no flags or -it) use Ctrl-P or Ctrl-Q (d)
+4q What command will run a container in the background? 
+4a podman run -d nginx (b)
+5q What command will inspect images that have not yet been download to your local system? 
+5a skopeo inspect (a) - not as detailed as podman inspect or buildah instpect, but it's done before downloading
+6q What command do you use for an overview of registries currently in use? 
+6a podman info | less; search registries (a)
+7q Identify required variables to run a container
+7a podman inspect containerName | grep usage; podman run containerName (let fail); podman logs (inspect recent failure) (d)
+8q Which SELinux context type must be set on host directories that you want to expose as persistent storage in the container using bind mounts?
+8a container_file_t (b)
+9q Which command will set the correct SELinux context type on a host directory that should be exposed as persistent storage inside a container?
+9a podman run --name mynginx -v /opt/nginx:/var/lib/nginx:Z nginx; (c) -v for bind mount, :Z right after the name of the directory within the container for SELinux
+9e User running this command must be the owner of the directory on the host OS
+10q Ensure a containuer used by user anna can be started as a systemd service at system start
+10a After enabling a container with systemctl --user enable containerName; loginctl enable-linger anna (b)
+11q What is CRI-O? 
+11a Container Runtime Interface - Openshift, pronounced CRY-O, is the default contained engine with RHEL 8+
+12q What is a cgroup? 
+12a Cgroups are a kernel feature that enables resource access limitation. By default, there is no restriction to the amount of memory or the number of CPU cycles a process can access. Cgroups allow for limiting available resources to a container. 
+13q Start an nginx container in background on external port 8080; How do you stop the container?    
+13a podman run --name nginxport -d -p 8080:80 nginx; podman ps -a; podman stop $containerName 
+14q Show list of currently running containers? Show list of containers that are installed but stopped? Show list of *rootless* containers?  
+14a podman ps; podman ps -a; sudo podman ps
+14e Containers ran as root (sudo) require sudo podman ps to see. Similarly, "podman ps" will *only* show rootless contianers.
+15q Login to registry.access.redhat.com, search for the latest ubi9 container image, and download the container image without running it;  
+15a podman login registry.access.redhat.com; podman search registry.access.redhat.com/ubi9; podman pull registry.access.redhat.com/ubi9;
+16q Inspect a container before pulling down to your local machine. View detailed information of that same container; 
+16a skopeo inspect registry.access.redhat.com/ubi9 (before it's downloaded); podman inspect registry.access.redhat.com/ubi9 (after it's downloaded) 
+16e View start command of a container with $> podman inspect registry.access.redhat.com/ubi9 | grep -a Cmd
+17q How do you build an image? 
+17a Create a file Containerfile with 3 lines: FROM (source image), RUN (container prep), CMD (ran at container run); podman build -t customImageName:tag .; where "tag" could be a version number and the . is the location of the Containerfile
+17e RHEL's UBI is a solid universal basic image, but kinda large at 200MB. Alpine is a common cloud container image due to its small size. 
+18q Stop, kill, and restart a container. What's the difference between stop and kill? 
+18a podman stop containerName; podman kill containerName; podman restart containerName; Stop sends a SIGTERM signal to the container, and after 10 seconds follows up with SIGKILL. Kill immediately sends a SIGKILL to the container, which is often unnecessary as the Stop command does this eventually. 
+19q How do you clean up containers? 
+19a podman rm containerName #remove specific container; podman run containerName --rm #run a container and immediately delete it after run
+20q How can you view process information within a container that does not have the ps command installed? 
+20a cat /proc/1/cmdline; Each /proc/PID folder correlates to an actual process ID. Might have to guess which # folder at first   
+21q Start an nginx container in interactive, with a shell, on port 80 (as root); How to exit without stopping the container? 
+21a sudo podman run --name nginxport -it -p 80:80 nginx; Ctrl + P or Q will detach, Ctrl + C or "exit" in TTY will stop it. 
+21e Ports 1-1024 are "privileged" and cannot be used by rootless containers
+22q How can you open a port in your firewall to allow rootless traffic through to an nginx container using 8080:80 port forwarding?  
+22a sudo firewall-cmd --add-port 8080/tcp --permanent; sudo firewall-cmd --reload; curl localhost:8080
+23q How do you diagnose issues with a container? 
+23q podman logs containerName; podman inspect containerName | grep usage;
+23e Some containers (not all) have a "usage" line that tells you how to run the container if it's non-standard
+24q Run a mariadb container in the background, on port 3306, and pass a MYSQL_ROOT_PASSWORD parameter
+24a podman run --name mariadb1 -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=securePassword mariadb; 
+25q What is required for a container to be able to access a host directory for persistent storage? 
+25a Before configuring a bind-mount one must ensure the host directory is writable for the user running the container, and the appropriate SELinux context label is set to container_file_t
+25e WTF semanage fcontext -a -t container_file_t "/hostdir(/.*)?"; restorecon
+26q How do you run commands inside the container namespace (from the host)? How do you run commands in a given contianer, such as looking for a specific user account?  
+26a podman unshare; EG podman unshare cat /proc/self/uid_map; podman exec containerName grep username /etc/passwd
+27q Exercise 26-8 on Bind Mounting in rootless containers - doesn't work! Step 9 verifies NOTHING
+27a Figure out Bind Mounting properly... 
+28q Use systemd to start nginx
+28a systemctl enable --now nginx 
+29q List services available to systemd
+29a systemctl list-units --type service
+30q Configure nginx to run on system startup
+30a loginctl enable-linger nginx
+30e This assumes the nginx service is enabled for the specific user nginx
+31q Generate a systemd unit file to start an nginx container, start the container with it
+31a cd ~/.config/systemd/joel/; podman generate systemd --name nginx --files; systemctl --user enable container-nginx.service 
+32q List three main tools to manage containers (542)
+32a podman, buildah, skopeo (I'd argue inspect) 
+33q List essential Linux kernel features for containers (543)
+33a Namespaces for isolation between processes, control groups (cgroups) for resource management), and SELinux for security
+34q Finding information about variables to use with a container (562)
+34a podman logs containerName; podman inspect containerName | grep usage;  
+35q To access a host directory from a container, it needs to be prepared. What two things are necessary to prepare? (563)
+35a 1. The host directory must be writable for the user account running the container; 2. The appropriate SELinux context label must be set to container_file_t  
+36q Define container, container engine, registry, CRI-o, namespace, Docker, Kubernetes, OpenShift, image, orchestration, linger
+36a Ooo I should list these
+37q What is the name of the tool that Red Hat includes with RHEL 9 to work with container images without having to download them from the registry first?
+37a skopeo
+38q What are the three Linux features that are needed in container environments?
+38a Namespaces, cgroups, and SELinux
+39q What is the name of the container engine on RHEL 9?
+39a CRI-o; podman implements CRI-O's API, which itself is based on Kubernetes
+40q Which file defines the registries that are currently used?
+40a Global = /etc/containers/registries.conf; User = ~/.config/!! AAA idk
+41q After you start a container, using podman run ubuntu, executing podman ps doesn’t show it as running. What is happening?
+41a! In a container image, a default command is specified. When you start a container, the default command is executed. After executing the default command, the container stops. In generic system images like Ubuntu and Fedora, the default command is set to /bin/bash, so if you don’t specify anything else, the container will immediately stop.
+42q What do you need to do to start a rootless container that bind-mounts a directory in the home directory of the current user account?
+42a Find the UID used by the container, and use podman unshare to make that UID the owner of the directory you wnat to provide access to. (see 27q) 
+43q How can you find the default command that a container image will use when started?
+43a podman inspect containerName | grep Cmd
+44q How do you start an Ubuntu-based container that prints the contents of /etc/os-release and then exits?
+44a podman run ubuntu cat /etc/os-release; The idea is that this OS container starts /bin/bash immediately, so if you don't supply a shell command as an argument it'll just silently stop. Alternative would be running podman run -it ubuntu.
+45q What do you need to do to run a podman nginx container in such a way that host port 82 forwards traffic to container port 80?
+45a podman run -d -p 82:80 nginx; sudo firewall-cmd --add-port 82/tcp --permanent; sudo firewall-cmd --reload 
+46q Which command do you use to generate a systemd unit file for the container with the name nginx?
+46a cd ~/.config/systemd/user; podman generate systemd --name nginx --files

@@ -1,0 +1,48 @@
+1q For ex200 RHCSA 9 which of the following distributions should you use? Which should you avoid?
+1a Use RHEL 9 with dev license, or Alma or Rocky. CentOS Stream is upstream dev "snapshot" of RHEL, Fedora is further upstream and experimental. 
+1e RHEL 9 is offered with 16 free development (non prod) licenses. Alma and Rocky are "downstream" of RHEL.
+2q Which of the following features is available in both RHEL and CentOS Stream?
+2a All software updates are made available in CentOS. 
+2e Hardware and software certification, as well as Support are RHEL exclusive
+3q Why should you install the server with a GUI installation pattern?
+3a To prepare for RHCSA, you need some tools that run in a GUI only, such as (!idk). 
+3e For sake of studying you'll appreciate having a GUI when working with Virtual Machines, configuring LDAP & Kerberos, and it make sthings easier with multiple terminal windows
+4q Which is the default file system that is used in RHEL 9?
+4a XFS is the default file system of RHEL 9
+4e !When did it change to XFS? Was it eve Ext4? What's the most popular file system for RHEL?
+5q Which feature is supported in Ext4 but not XFS? 
+5a The size of an XFS file system cannot be reduced.  
+6q What are some reasons to avoid Fedora? What's a poor reason?   
+6a Fedora has features that may not be in future RHEL releases, softare (and bugs) may differ from the same software in RHEL. However, "stability" is a poor reason. It's definitely stable. 
+7q Which is NOT available from the Installation Summary Screen: Time & Date, Keyboard, Language Support, Troubleshoot an Existing Installation
+7a D: Troubleshootin an Existing Installation is available when booting from disk but NOT on the Installation Summary screen 
+8q After setting the root password that you want to use, you cannot proceed with the installation. What is the most likely reason? 
+8a You have to confirm (hit done) *twice*, as you are absolutely allowed to use an unsecure root password.
+9q When can the language be set in a RHEL install? 
+9q Installation Summary screen, directly after booting from installation media, and after installation.
+10q When installing a server that uses LVM logical volumes, you'll get *at least* three storage volumes (partitions or LVM), such as:  
+10a /, /boot, and swap; /var, while maybe makes sens to be on its own logical volume, isn't separated onto its own by default. 
+11q You do not want to buy RHEL but want to create an exam practice environment. What distro should you use? 
+11a RHEL with one of your 16 dev licenses, or Alma or Rocky.
+12q What happens to the network configuration if you don't specify anything during the installation? 
+12a Your network card *may* not be enabled. If it is, the system will automatically obtain an IP address from a DHCP server.
+13q What are the hardware requirements of a "Minimal" install? 
+13a 1GiB, 10 GiB, a network card. Double are recommended. 
+14q Why is it a good idea to have Internet access on servers you are installing? 
+14a By default updates and additional software packages require Internet. 
+15q You want to install a virtual machine on a computer that does not have an optical disk drive. What is the easiest alternative to perform the installation?  
+15a Use an ISO image to install a virtual machine. 
+16q What are some benefiits of a GUI?  
+16a Multiple terminal windows!  
+17q What is the default file system used by RHEL 9?  
+17a XFS.  
+18q Can you install RHEL without Internet access? 
+18a Yes, but you can't register with RHN, so you won't have access to any repositories. You'll have to setup repository access manually after install.  
+19q What is the most important benefit of using Subscription Manager to register your RHEL 9 installation? 
+19a Access to RHEL repositories.  
+20q Which installation pattern should you use if you have a very limited amount of disk space available? 
+20a Minimal Installation (sans GUI)
+21q Setup a server using the "Minimal Installation" pattern
+21a When installing RHEL you can choose a Base Environment. Minimal Install (sans GUI) is *very* common.
+22q What is "Linux"? What's a Linux distribution? 
+22a Linux is a Unix-like operating system based on the Linux kernal, which was first released by Linus Torvalds in 1991. Linux is packaged as a "distribution", which includes the kernal and supporting software and librarys, many of which are provided by the GNU Project.  

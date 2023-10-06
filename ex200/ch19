@@ -1,0 +1,74 @@
+1q What should every BASH script start with? 
+1a #!/bin/bash (b)
+2q What is the purpose of exit 0 that can be used at the end of scripts? 
+2a It informs the parent shell that the script executed without issue (a)
+3q How do you stop a script to allow a user to provide input? 
+3a read (c)
+4q Define a variable in a shell script by the first argument provided? 
+4a name=$1 (a)
+5q What is the best way to distinguish between different arguments that have been passed into a shell script? 
+5a Both $@ and $* can be used to refer to all arguments provided when starting a script; but $@ enables the script to distinguish between individual arguments, while $* refers to all arguements as one entity.  
+6q What is used to close an if loop?
+6a fi (d)
+7q Write a "if" script that includes an additional "elif" clause 
+7a elif (c); if [ -f $1 ]; then echo "$1 is a file"; elif [ -d $1 ]; then echo "$1 is a directory"; else echo "I do not know what \$1 is"; fi 
+8q Write a "for" script that loops 100 times
+8a for (( counter=100; counter>1; counter-- )); do echo $counter; done; exit 0 
+9q What command will send a message with the Sub "error" to the user root if something didn't work in a script? 
+9a mail -s error root < .;
+9e Use -s to specify subject with mail. The mail command waits until a dot is entered on an empty line to start sending the message. This cna be fed with TDIN redirection using <.
+10q WRITE A CASE STATEMENT In a case statement, it is a good idea to include a line that applies to ALL other siutations. How do? 
+10a *) !!! Write a case statement?  
+11q What command will request the exit status of the last command? 
+11a echo $?
+12q What two ways can you execute hello.sh? 
+12a Either ./hello.sh or bash hello.sh
+12e If a scripted is started as an argument to bash, execute privileges are not needed. If ran directly (./hello.sh) +x is required.
+13q What is the bash to count supplied arguments to a script? What then refers to *all* arguments? 
+13a $# is a bash variable equal to the number of supplied arguments. $@ is a bash variable referring to *all* arguments.
+14q What is a variable? 
+14a A 'label' referring to a specific location in memory that contains a specific value.
+15q What are the modern and legacy syntax for command substitution? 
+15a variable=$(date) or variable=`date`. Both are POSIX compliant, but backquotes are considered "legacy" by many, favoring $() for ease of use nesting
+16q The test command can wrap a conditional statement in what brackets? Define arguments -z & -n.
+16a if test -z $1; if [ -z $1 ]; -z = length of stirng is zero; -n = length of string is !zero
+17q What are the test command arguments for 'file exists and is a directory', 'file exists', and 'file exists with a size on disk greater than zero'? 
+17a test -e || [ -e $directory ] ; test -f || [ -f $fileName ] ; test -s [ -s $fileGreaterThanZero ] ; 
+18q Bashisms: Escape character? And, or, not logical operators? 
+18a \ ; && ; || ; !
+19q Write a for loop that checks if multiple IPs are accessible
+19a for i in {100..102}; do ping -c 192.168.0.$i >/dev/null && echo "192.168.4.$i is up"; done
+19e The "for" statement helps working through *ranges* of items 
+20q Write a while loop that checks if a given process is running
+20a while ps aux | grep $1 | grep -v grep; do sleep 5; done; clear; echo "Your process has stopped"
+21q Write an until loop that checks if a specific user is logged in
+21a until users | grep $1 > /dev/null; do echo "User $1 is not logged in yet"; sleep 5; done; echo "User $1 finally logged in!"
+22q Write a case statement that k shoot weird 
+22a idk man 
+23q How to debug a script? 
+23a bash -x script.sh
+24q Declare a shebang for a bash script. What happens if a script doesn't have it? 
+24a #!/bin/bash; The script will be interpreted by the same shell as the parent shell. 
+25q What is a variable? Define one, statically and dynamically
+25a A variable is a name referring to a specific location in memroy containing a specific value. joelvar=value; READ joelvar; joelvar=$(whoami)
+26q Check if variable VAR has no value
+26a test -z $VAR; if [ -z $VAR ]; then echo "It's empty"; fi; 
+27q Count the number of arguments used in a script
+27a $#; expand to be a complete shell script
+28q Refer to all arguments used when starting a script
+28a $@; expand to be a complete shell script
+29q Process user input in a script
+29a Ask user with "read SOMEVAR"; 
+30q BASH Write a script to test whether a file exists and, if not, write it doesn't to STDOUT
+30a if [ ! -f file.txt ]; then echo "File doesn't exist; fi; 
+31q Write a script to test if something is a file or directory? 
+31a if [ -f $1 ]; then echo "$1 is a file"; elif [ -d $1 ]; then echo "$1 is a directory"; fi; exit 0; 
+31e -e flag? 
+32q Write a script to test a *range* of items.
+32a A for loop..? .
+33q Write a case script
+33a Yikes 
+34q LAB Write a script that works with arguments. If the argument one is used, the script should create a file named /tmp/one. If the argument two is used, the script should send a message containing the subject “two” to the root user.
+34a Do it!
+35q Write a countdown script. The script should use one argument (and not more than one). This argument specifies the number of minutes to count down. It should start with that number of minutes and count down second by second, writing the text “there are nn seconds remaining” at every iteration. Use sleep to define the seconds. When there is no more time left, the script should echo “time is over” and quit
+35a Do it!
