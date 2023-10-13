@@ -1,6 +1,6 @@
 1. Rename conf.example -> conf
 2. Update variables in quiz.conf with:
 2b. Minimum of 10 questions, maximum of 99 (for now)
-3. Create a test folder, example /app/studyBuddy/rh124
-4. Create a chapter file, example /app/studyBuddy/rh124/ch1
-5. Run quiz.sh
+3. Create a test folder, example /app/studyBuddy/ex200
+4. Create a chapter file, example /app/studyBuddy/ex200/ch1
+5. Run quiz.sh or quiz.sh ex200 ch5

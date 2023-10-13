@@ -25,10 +25,11 @@
 12a Cgroups are a kernel feature that enables resource access limitation. By default, there is no restriction to the amount of memory or the number of CPU cycles a process can access. Cgroups allow for limiting available resources to a container. 
 13q Start an nginx container in background on external port 8080; How do you stop the container?    
 13a podman run --name nginxport -d -p 8080:80 nginx; podman ps -a; podman stop $containerName 
+13e 8080:80 -> hostTrafficOut:ContainerTrafficIn, then only open firewall port of the host port (first one, 8080:)
 14q Show list of currently running containers? Show list of containers that are installed but stopped? Show list of *rootless* containers?  
 14a podman ps; podman ps -a; sudo podman ps
 14e Containers ran as root (sudo) require sudo podman ps to see. Similarly, "podman ps" will *only* show rootless contianers.
-15q Login to registry.access.redhat.com, search for the latest ubi9 container image, and download the container image without running it;  
+15q Ensure you are logged in to get access to Red Hat container registries, search for the latest ubi9 container image, and download the container image without running it;  
 15a podman login registry.access.redhat.com; podman search registry.access.redhat.com/ubi9; podman pull registry.access.redhat.com/ubi9;
 16q Inspect a container before pulling down to your local machine. View detailed information of that same container; 
 16a skopeo inspect registry.access.redhat.com/ubi9 (before it's downloaded); podman inspect registry.access.redhat.com/ubi9 (after it's downloaded) 
@@ -45,13 +46,13 @@
 21q Start an nginx container in interactive, with a shell, on port 80 (as root); How to exit without stopping the container? 
 21a sudo podman run --name nginxport -it -p 80:80 nginx; Ctrl + P or Q will detach, Ctrl + C or "exit" in TTY will stop it. 
 21e Ports 1-1024 are "privileged" and cannot be used by rootless containers
-22q How can you open a port in your firewall to allow rootless traffic through to an nginx container using 8080:80 port forwarding?  
+22q How can you open a port in your firewall to allow rootless traffic through to an nginx container using host port 8080 to container port 80?  
 22a sudo firewall-cmd --add-port 8080/tcp --permanent; sudo firewall-cmd --reload; curl localhost:8080
 23q How do you diagnose issues with a container? 
 23q podman logs containerName; podman inspect containerName | grep usage;
 23e Some containers (not all) have a "usage" line that tells you how to run the container if it's non-standard
-24q Run a mariadb container in the background, on port 3306, and pass a MYSQL_ROOT_PASSWORD parameter
-24a podman run --name mariadb1 -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=securePassword mariadb; 
+24q Run a mariadb container in the background, on host port 3206 to the SQL port 3306, and pass a MYSQL_ROOT_PASSWORD parameter
+24a podman run --name mariadb1 -d -p 3206:3306 -e MYSQL_ROOT_PASSWORD=securePassword mariadb; 
 25q What is required for a container to be able to access a host directory for persistent storage? 
 25a Before configuring a bind-mount one must ensure the host directory is writable for the user running the container, and the appropriate SELinux context label is set to container_file_t
 25e WTF semanage fcontext -a -t container_file_t "/hostdir(/.*)?"; restorecon
@@ -85,7 +86,7 @@
 39q What is the name of the container engine on RHEL 9?
 39a CRI-o; podman implements CRI-O's API, which itself is based on Kubernetes
 40q Which file defines the registries that are currently used?
-40a Global = /etc/containers/registries.conf; User = ~/.config/!! AAA idk
+40a Global = /etc/containers/registries.conf; User = ~/.config/containers/registries.conf
 41q After you start a container, using podman run ubuntu, executing podman ps doesn’t show it as running. What is happening?
 41a! In a container image, a default command is specified. When you start a container, the default command is executed. After executing the default command, the container stops. In generic system images like Ubuntu and Fedora, the default command is set to /bin/bash, so if you don’t specify anything else, the container will immediately stop.
 42q What do you need to do to start a rootless container that bind-mounts a directory in the home directory of the current user account?
@@ -96,5 +97,12 @@
 44a podman run ubuntu cat /etc/os-release; The idea is that this OS container starts /bin/bash immediately, so if you don't supply a shell command as an argument it'll just silently stop. Alternative would be running podman run -it ubuntu.
 45q What do you need to do to run a podman nginx container in such a way that host port 82 forwards traffic to container port 80?
 45a podman run -d -p 82:80 nginx; sudo firewall-cmd --add-port 82/tcp --permanent; sudo firewall-cmd --reload 
+45e 82:80 -> hostTrafficOut:ContainerTrafficIn, then only open firewall port of the host port (first one, 82:)
 46q Which command do you use to generate a systemd unit file for the container with the name nginx?
 46a cd ~/.config/systemd/user; podman generate systemd --name nginx --files
+47q (LAB 261 3) Login to Red Hat container registries, download Red Hat mariadb contianer, start it with the following requirements: accessible on port 3006, set MYSQL_ROOT_PASSWORD to "password", create a database named "mydb", a bind-mounted directory is accessible /opt/mariadb on teh host mapped to /var/lib/mysql in the container, configure systemd to automatically start the container as a user systemd unit on system restart
+47a podman login registry.access.redhat.com; podman pull registry.redhat.io/rhel9/mariadb-105; podman run --name mariadb -d -P 3006:3206 -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=mydb mariadb <bind-mounttdirectoryAAA> 
+47e /etc/containers/registries.conf,  
+48q (LAB 261 4) Configure systemd to automatically start the container mariadb as a user systemd unit on system reboot
+48a cd ~/.config/systemd/user; podman generate systemd --name mariadb --files; systemctl --user daemon-reload; systemctl --user enable container-mynginx.service; 
+48e Exercise 26-9
