@@ -15,7 +15,7 @@
 8q What is the name of the file in which the public key fingerprint of the SSH servers you have connected to in the past are stored?
 8a D ~/.ssh/known_hosts
 9q What parameter in /etc/ssh/ssh_config enables permanent use of graphical applications through an SSH session? What about one-time command line option? 
-9a idk; -X for command-line option per session 
+9a ForwardX11=yes; -X for command-line option per session 
 10q SSH question
 10a 
 11q Another SSH question
