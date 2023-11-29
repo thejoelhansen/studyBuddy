@@ -1,0 +1,45 @@
+# Application management commands
+which
+yum
+cat
+clear
+echo
+top
+
+# Environment variables commands
+env
+export
+printenv
+source
+cd
+cp
+find
+grep
+ls
+mkdir
+more
+mv
+pwd
+rm
+tar
+
+# Help commands
+man
+
+#Network commands
+curl
+ip
+netstat
+ssh
+wget
+
+# Process management commands
+&&
+kill
+ps
+
+# System control commands
+poweroff
+reboot
+whoami
+

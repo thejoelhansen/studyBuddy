@@ -29,3 +29,7 @@
 14q Grant linda access only to the passwd command, with the exception of the root user 
 14a visudo or sudo vi /etc/sudoers; linda ALL=/user/bin/passwd, ! /usr/bin/passwd root
 14e Tip: sudo does not allow pipes by default. use sudo sh -c "rpm -qa | grep ssh" to use a pipe with sudo. 
+15q What command is an alternative to sudo? Why can it be considered more secure? 
+15a pkexec (Policy Kit EXECute) also runs commands as different users. However, it relies on PolicyKit files for (potentially) finer grain permissions. Sudo *always* runs a command with unlimited access (root), whereas pkexec can run a command with only the elevated permissions it actually needs (assuming the PolicyKit file is good)
+
+p128 Exercise 6-2
