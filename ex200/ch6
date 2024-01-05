@@ -26,13 +26,15 @@
 12e With a login shell all scripts that make up the user environment are processed, which makes you work in an environment that is exactly the same as when logging in as that user. 
 13q Grant linda sudo privileges. Revoke her sudo privileges. 
 13a sudo usermod -aG wheel linda; sudo deluser linda wheel; visudo (to verify %wheel ALL=(ALL) ALL); 
+13e usermod option -a is append, which *adds* the user to a group. Without -a, your usermod statement will replace all existing groups a user is a member of with your new addition.
 14q Grant linda access only to the passwd command, with the exception of the root user 
 14a visudo or sudo vi /etc/sudoers; linda ALL=/user/bin/passwd, ! /usr/bin/passwd root
 14e Tip: sudo does not allow pipes by default. use sudo sh -c "rpm -qa | grep ssh" to use a pipe with sudo. 
 15q What command is an alternative to sudo? Why can it be considered more secure? 
 15a pkexec (Policy Kit EXECute) also runs commands as different users. However, it relies on PolicyKit files for (potentially) finer grain permissions. Sudo *always* runs a command with unlimited access (root), whereas pkexec can run a command with only the elevated permissions it actually needs (assuming the PolicyKit file is good)
 16q Define each colon dilemeted value of a typical row in /etc/passwd (user:x:1000:1000:user:/home/user:/bin/bash)
-16a username, password, UID, GID, comment field, directory, login shell
+16a username, password, UID, GID, comment, home directory, login shell
 16e UIDs < 1000 are typically used for system accounts, and UIDs > 1000 are reserved for user accounts
-
+16q Where are new user account defaults configured? 
+16a /etc/default/useradd and /etc/login.defs for user defaults, /etc/skel for /home/user directory
 p135 Exercise 6-5 (managing password properties)
