@@ -1,0 +1,25 @@
+1q Which of the following allows you to set SELinux in disabled mode in RHEL 9? From a root shell, use setenforce 0, Use the GRUB kernel boot argument selinux=0, Set selinux=disabled in /etc/sysconfig/selinux, Remove the SELinux packages using dnf remove selinux
+1a 
+2q Which of the following commands enable you to see the current
+SELinux mode? (Choose two.) estatus, lsmode, semode, getenforce
+2a 
+3q Which of the following items in the context label is the most significant for SELinux system administration tasks? Type, User, Role, Mission
+3a
+4q Which command-line switch is used with many commands to display SELinux-related information? -S, -X, -Z, -D
+4a 
+5q Which of the following commands should be used to set the context type of the directory /web to httpd_sys_content_t? chcon -t httpd_sys_content_t /web, semanage -t httpd_sys_content_t "/web(/.*)?", semanage fcontext -t httpd_sys_content_t "/web(/.*)?", semanage fcontext -a -t httpd_sys_content_t "/web(/.*)?"
+5a
+6q Which command must you run to ensure that a file has the appropriate SELinux context after moving the file to another location? reboot, restorecon /new/filename, chcon, restorecon -R /etc/selinux -v
+6a 
+7q While setting a port context using semanage port -a -t ssh_port_t -p tcp 443, you get an error message telling you that the port is already definedq Which of the following statements is true? You cannot change a default port setting like 443 as it is used already for https, You have already issued the command earlier, You need to use -m to modify the port context, not -a to add it, The syntax you use is incorrect.
+7a
+8q Which command enables you to change a Boolean in a way that it survives a reboot? chcon boolean -P, setsebool -P, setsebool, semanage boolean
+8a 
+9q Which file contains all the information you need to troubleshoot SELinux messages? /var/log/audit/audit.log, /var/log/selinux/selinux.log, /var/log/messages, /var/log/selinux.log
+9a 
+10q You want to grep the audit log for SELinux log messagesq Which of the following strings should you use grep on? selinux, deny, violation, AVC
+10a
+21q Where are SELinux logs located?
+21a /var/log/audit/audit.log
+
+

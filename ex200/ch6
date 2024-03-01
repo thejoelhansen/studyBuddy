@@ -37,4 +37,10 @@
 16e UIDs < 1000 are typically used for system accounts, and UIDs > 1000 are reserved for user accounts
 16q Where are new user account defaults configured? 
 16a /etc/default/useradd and /etc/login.defs for user defaults, /etc/skel for /home/user directory
+17q Where are user passwords stored? What's their format? What notes a disabled password? What notes an unset password? 
+17a /etc/shadow, the hash of the encrypted password, !, !!
+17e While you can manually edit /etc/shadow, it's extremely bad practice. For example, use passwd -l and passwd -u to lock & unlock a user's account.
+18q What are the values in /etc/shadow? 
+18a user:hash of encrypted password:date since last password change (from epoch):min days before allowed next password change (0 = no age enforced):max days until password change required:dasy a user is warned their password will expire:number of days after expiry an account is locked:expiry date of account (from epoch)
+18e User:Password:LastChange:Min:Max:Warn:Inactive:Expire ... only first 6 are required, EG user:password:19732:0:99999:7:::
 p135 Exercise 6-5 (managing password properties)
