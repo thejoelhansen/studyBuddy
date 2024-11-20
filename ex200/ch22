@@ -21,5 +21,6 @@ SELinux mode? (Choose two.) estatus, lsmode, semode, getenforce
 10a
 21q Where are SELinux logs located?
 21a /var/log/audit/audit.log
-
+22q How do you put SELinux in disabled mode? How about permissive mode? Enforce or permissive temporarily?  
+22a GRUB kernel boot argument selinx=0; Either in /etc/sysconfig/selinux where SELINUX=permissive (survives reboot) or GRUB shell with enforcing=0; getenforce or sestatus -v to view status, setenforce 0 or 1 for permissive and enforcing.
 
